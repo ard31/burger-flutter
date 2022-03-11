@@ -23,6 +23,134 @@ class DetailScreen extends StatelessWidget {
   }
 }
 
+class DetailMobilePage extends StatelessWidget {
+  final McdPlace place;
+
+  const DetailMobilePage({required this.place});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Stack(children: <Widget>[
+              Image.asset(place.imageBanner),
+              SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CircleAvatar(
+                        backgroundColor: Colors.white,
+                        child: IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: Icon(Icons.arrow_back),
+                          color: Colors.black,
+                        ),
+                      ),
+                      FavoriteButton(),
+                    ],
+                  ),
+                ),
+              )
+            ]),
+            Container(
+              margin: const EdgeInsets.only(top: 16.0),
+              child: Text(
+                place.name,
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 30.0, fontFamily: 'Staatliches'),
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.symmetric(vertical: 16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Column(
+                    children: <Widget>[
+                      Icon(Icons.calendar_today),
+                      SizedBox(height: 8.0),
+                      Text(
+                        place.openDay,
+                        style: informationTextStyle,
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: <Widget>[
+                      Icon(Icons.access_time),
+                      SizedBox(height: 8.0),
+                      Text(place.openTime, style: informationTextStyle),
+                    ],
+                  ),
+                  Column(
+                    children: <Widget>[
+                      Icon(Icons.star_rate),
+                      SizedBox(height: 8.0),
+                      Text(
+                        place.rating,
+                        style: informationTextStyle,
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.all(8.0),
+              child: Text(
+                'Menu',
+                textAlign: TextAlign.start,
+                style: TextStyle(fontSize: 20.0, fontFamily: 'Oswald'),
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.all(8.0),
+              child: Card(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Expanded(
+                      flex: 1,
+                      child: Image.asset(place.imageProfile),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Text(
+                              place.name,
+                              style: TextStyle(fontSize: 16.0),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(place.name),
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class DetailWebPage extends StatefulWidget {
   final McdPlace place;
 
@@ -158,160 +286,6 @@ class _DetailWebPageState extends State<DetailWebPage> {
   void dispose() {
     _scrollController.dispose();
     super.dispose();
-  }
-}
-
-class DetailMobilePage extends StatelessWidget {
-  final McdPlace place;
-
-  const DetailMobilePage({required this.place});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Stack(children: <Widget>[
-              Image.asset(place.imageBanner),
-              SafeArea(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CircleAvatar(
-                        backgroundColor: Colors.white,
-                        child: IconButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          icon: Icon(Icons.arrow_back),
-                          color: Colors.black,
-                        ),
-                      ),
-                      FavoriteButton(),
-                    ],
-                  ),
-                ),
-              )
-            ]),
-            Container(
-              margin: const EdgeInsets.only(top: 16.0),
-              child: Text(
-                place.name,
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 30.0, fontFamily: 'Staatliches'),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.symmetric(vertical: 16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Column(
-                    children: <Widget>[
-                      Icon(Icons.calendar_today),
-                      SizedBox(height: 8.0),
-                      Text(
-                        place.openDay,
-                        style: informationTextStyle,
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: <Widget>[
-                      Icon(Icons.access_time),
-                      SizedBox(height: 8.0),
-                      Text(place.openTime, style: informationTextStyle),
-                    ],
-                  ),
-                  Column(
-                    children: <Widget>[
-                      Icon(Icons.star_rate),
-                      SizedBox(height: 8.0),
-                      Text(
-                        place.rating,
-                        style: informationTextStyle,
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.all(8.0),
-              child: Text(
-                'Menu',
-                textAlign: TextAlign.start,
-                style: TextStyle(fontSize: 20.0, fontFamily: 'Oswald'),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.all(8.0),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class McdPlaceList extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      itemBuilder: (context, index) {
-        final McdPlace place = mcdPlaceList[index];
-        return InkWell(
-          onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return DetailScreen(
-                place: place,
-              );
-            }));
-          },
-          child: Card(
-            margin:
-            const EdgeInsets.only(left: 20, right: 20, top: 8, bottom: 8),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Expanded(
-                  flex: 1,
-                  child: Image.asset(
-                    place.imageProfile,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Text(
-                          place.name,
-                          style: TextStyle(fontSize: 16.0),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(place.openDay + " | " + place.openTime),
-                      ],
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-        );
-      },
-      itemCount: mcdPlaceList.length,
-    );
   }
 }
 
