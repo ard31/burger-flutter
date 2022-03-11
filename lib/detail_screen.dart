@@ -53,7 +53,6 @@ class DetailMobilePage extends StatelessWidget {
                           color: Colors.black,
                         ),
                       ),
-                      FavoriteButton(),
                     ],
                   ),
                 ),
@@ -110,37 +109,56 @@ class DetailMobilePage extends StatelessWidget {
                 style: TextStyle(fontSize: 20.0, fontFamily: 'Oswald'),
               ),
             ),
-            Container(
-              margin: const EdgeInsets.all(8.0),
-              child: Card(
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Expanded(
-                      flex: 1,
-                      child: Image.asset(place.imageProfile),
-                    ),
-                    Expanded(
-                      flex: 2,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                height: 500,
+                width: 600,
+                child: GridView.count(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 16,
+                  mainAxisSpacing: 16,
+                  children: mcdMenuList.map((menu) {
+                    return InkWell(
+                      onTap: () {},
+                      child: Card(
+                        margin: const EdgeInsets.only(bottom: 10),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            Text(
-                              place.name,
-                              style: TextStyle(fontSize: 16.0),
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: Image.network(
+                                menu.imageAsset,
+                                fit: BoxFit.cover,
+                              ),
                             ),
-                            SizedBox(
-                              height: 10,
+                            SizedBox(height: 8),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                menu.name,
+                                style: TextStyle(
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                             ),
-                            Text(place.name),
+                            Row(
+                              children: <Widget>[
+                                Padding(padding: const EdgeInsets.all(8.0)),
+                                SizedBox(height: 8.0),
+                                Text(
+                                  menu.price,
+                                  style: informationTextStyle,
+                                ),
+                                FavoriteButton(),
+                              ],
+                            ),
                           ],
                         ),
                       ),
-                    )
-                  ],
+                    );
+                  }).toList(),
                 ),
               ),
             ),

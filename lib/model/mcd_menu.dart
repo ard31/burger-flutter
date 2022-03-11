@@ -18,26 +18,6 @@ var mcdMenuList = [
       imageAsset:
           'https://www.mcdelivery.co.id/id/static/1646591044376/assets/62/products/100022.png'),
   McdMenu(
-      name: 'Beef Burger Deluxe',
-      price: '24.000',
-      imageAsset:
-          'https://www.mcdelivery.co.id/id/static/1646591044376/assets/62/products/100147.png'),
-  McdMenu(
-      name: 'Pamer 7',
-      price: '161.000',
-      imageAsset:
-          'https://www.mcdelivery.co.id/id/static/1646591044376/assets/62/products/111066.png'),
-  McdMenu(
-      name: 'Panas Spesial',
-      price: '42.500',
-      imageAsset:
-          'https://www.mcdelivery.co.id/id/static/1646591044376/assets/62/products/111032.png'),
-  McdMenu(
-      name: 'Panas 1',
-      price: '24.500',
-      imageAsset:
-          'https://www.mcdelivery.co.id/id/static/1646591044376/assets/62/products/111028.png'),
-  McdMenu(
       name: 'Strawberry Sundae',
       price: '11.000',
       imageAsset:
